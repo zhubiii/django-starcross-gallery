@@ -22,7 +22,6 @@
 {% for album in object_list %}
 	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
 
-    <a class="nounderline" href="{% url 'gallery:album_detail' album.pk album.slug  %}">
 
         {% if album.display_highlight %}
             {% with album.display_highlight as image %}
@@ -39,6 +38,7 @@
 
 			{% endif %}
 
+    			<a class="nounderline" href="{% url 'gallery:album_detail' album.pk album.slug  %}">
 			<div class="card home-card">
 				<img src="{{ image.data_thumbnail.url }}" class="card-img-top" alt="{{ image.title }}">
 				<div class="card-body">
@@ -46,6 +46,7 @@
 					<p class="card-text text-body">{{ image.description }}</p>
 				</div>
 			</div>
+    			</a>
 			</div>
 
 		<!--Make sure only 4 columns per row-->
@@ -69,6 +70,7 @@
 			<div class="col-sm">
 
 			{% endif %}
+    			<a class="nounderline" href="{% url 'gallery:album_detail' album.pk album.slug  %}">
 			<div class="card home-card">
 				<img src="{% static 'gallery/images/album.png' %}" class="card-img-top" alt="{{ image.title }}">
 				<div class="card-body">
@@ -76,6 +78,7 @@
 					<p class="card-text text-body">Click to add photos!</p>
 				</div>
 			</div>
+    			</a>
 			</div>
 		<!--Make sure only 4 columns per row-->
 		{% if forloop.counter|divisibleby:4 %}
@@ -84,7 +87,6 @@
 		{% endif %}
 
         {% endif %}
-    </a>
 	{% if forloop.last %}</div>{% endif %}
 {% endfor %}
 
