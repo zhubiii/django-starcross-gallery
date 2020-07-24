@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ gallery_title }}
+{% endblock %}
+
+{% block header %}
+
+    <script type="text/javascript" src="{% static 'gallery/js/infinite_scroll.js' %}"></script>
+    {% include "gallery/partials/justify_images.html" %}
+
+{% endblock %}
+
+{% block bar_title %}
+    <div id="title">{{ gallery_title }}</div>
+{% endblock %}
+
+{% block content %}
+<h2 class="title_font title_color mt-4 mb-2 mx-5 px-5">ALL ALBUMS<hr/></h2>
+
+{% for album in object_list %}
+	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
+
+    <a class="nounderline" href="{% url 'gallery:album_detail' album.pk album.slug  %}">
+
+        {% if album.display_highlight %}
+            {% with album.display_highlight as image %}
+			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
+
+			{% elif forloop.counter|divisibleby:4 %}
+			<div class="col-sm mr-5 pr5">
+
+			{% elif forloop.counter0|divisibleby:4  %}
+			<div class="col-sm ml-5 pl-5">
+
+			{% else %}
+			<div class="col-sm">
+
+			{% endif %}
+
+			<div class="card home-card">
+				<img src="{{ image.data_thumbnail.url }}" class="card-img-top" alt="{{ image.title }}">
+				<div class="card-body">
+					<h5 class="card-title title_color">{{ image.title }}</h5>
+					<p class="card-text text-body">{{ image.description }}</p>
+				</div>
+			</div>
+			</div>
+
+		<!--Make sure only 4 columns per row-->
+		{% if forloop.counter|divisibleby:4 %}
+			</div>
+			<div class="row my-5 mx-auto">
+		{% endif %}
+
+            {% endwith %}
+        {% else %}
+
+			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
+
+			{% elif forloop.counter|divisibleby:4 %}
+			<div class="col-sm mr-5 pr5">
+
+			{% elif forloop.counter0|divisibleby:4  %}
+			<div class="col-sm ml-5 pl-5">
+
+			{% else %}
+			<div class="col-sm">
+
+			{% endif %}
+			<div class="card home-card">
+				<img src="{% static 'gallery/images/album.png' %}" class="card-img-top" alt="{{ image.title }}">
+				<div class="card-body">
+					<h5 class="card-title title_color">EMPTY ALBUM</h5>
+					<p class="card-text text-body">Click to add photos!</p>
+				</div>
+			</div>
+			</div>
+		<!--Make sure only 4 columns per row-->
+		{% if forloop.counter|divisibleby:4 %}
+			</div>
+			<div class="row my-5 mx-auto">
+		{% endif %}
+
+        {% endif %}
+    </a>
+	{% if forloop.last %}</div>{% endif %}
+{% endfor %}
+
+</div>
+
+{% endblock %}

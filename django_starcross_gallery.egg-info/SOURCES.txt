@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_starcross_gallery.egg-info/PKG-INFO
+django_starcross_gallery.egg-info/SOURCES.txt
+django_starcross_gallery.egg-info/dependency_links.txt
+django_starcross_gallery.egg-info/requires.txt
+django_starcross_gallery.egg-info/top_level.txt
+tests/__init__.py
+tests/test_settings.py
+tests/tests.py
+tests/urls.py
