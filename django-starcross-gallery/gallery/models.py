@@ -9,6 +9,7 @@ from PIL.ExifTags import TAGS
 from gallery import settings
 from pathlib import Path
 from datetime import datetime
+from django_countries.fields import CountryField
 import os
 
 
@@ -216,6 +217,11 @@ class Image(models.Model):
         (OTHER_UNKNOWN,'Other/Unknown'),
     ]
     material = models.CharField(max_length=2,choices=material_choices,default=OTHER_UNKNOWN)
+#country
+    country = CountryField(blank_label='(Country of Origin)')
+#Artist/Attribution
+    artist_or_attribution = models.CharField(max_length=150)
+
 
     data = models.ImageField(upload_to='images')
     data_thumbnail = ImageSpecField(source='data',
