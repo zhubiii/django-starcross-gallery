@@ -13,6 +13,163 @@ import os
 
 
 class Image(models.Model):
+#Parameters
+    title = models.CharField(default='no title',max_length=250)
+    date = models.DateField(blank=True, null=True)
+#Culture Options
+    GREEK = 'GK'
+    ROMAN = 'R'
+    EGYPTIAN = 'EG'
+    ETRUSCAN = 'ET'
+    PHOENICIAN = 'PH'
+    ANATOLIAN = 'AN'
+    PERSIAN = 'PR'
+    MACEDONIAN = 'MC'
+    GALLIC = 'GA'
+    HYBRID = 'HY'
+    CULTURE_OTHER = 'CO'
+    culture_choices = [
+	(GREEK, 'Greek'),
+	(ROMAN, 'Roman'),
+	(EGYPTIAN, 'Egyptian'),
+	(ETRUSCAN, 'Etruscan'),
+	(PHOENICIAN, 'Phoenician'),
+	(ANATOLIAN, 'Anatolian'),
+	(PERSIAN, 'Persian'),
+	(MACEDONIAN, 'Macedonian'),
+	(GALLIC, 'Gallic'),
+	(HYBRID, 'Hybrid'),
+	(CULTURE_OTHER, 'Other'),
+    ]
+    culture = models.CharField(max_length=2,choices=culture_choices,default=CULTURE_OTHER,)
+#Period Options
+    GENERAL = 'GN'
+    EARLY = 'ER'
+    MIDDLE = 'MD'
+    LATE = 'LT'
+    period_prefix_choices = [
+	(GENERAL, 'General'),
+	(EARLY, 'Early'),
+	(MIDDLE, 'Middle'),
+	(LATE, 'Late'),
+    ]
+    period_prefix = models.CharField(max_length=2, choices=period_prefix_choices,default=GENERAL,)
+
+    BRONZE = 'BR'
+    DARK = 'DK'
+    ARCHAI = 'AC'
+    CLASSICAL = 'CL'
+    HELLENISTIC = 'HL'
+    ETRUSCAN_MONARCHY = 'EM'
+    ROMAN_REPUBLIC = 'RR'
+    ROMAN_EMPIRE = 'RE'
+    LATE_ANTIQUE = 'LA'
+    PERIOD_OTHER = 'PO'
+    period_choices = [
+	(BRONZE, 'Bronze Age'),
+	(DARK, 'Dark Age'),
+	(ARCHAI, 'Archai'),
+	(CLASSICAL, 'Classical'),
+	(HELLENISTIC, 'Hellenistic'),
+	(ETRUSCAN_MONARCHY, 'Etruscan/Monarchy'),
+	(ROMAN_REPUBLIC, 'Roman Republic'),
+	(ROMAN_EMPIRE, 'Roman Empire'),
+	(LATE_ANTIQUE, 'Late Antique'),
+	(PERIOD_OTHER, 'Other'),
+    ]
+    period = models.CharField(max_length=2, choices=period_choices,default=PERIOD_OTHER,)
+#Object Type
+    VASES_VESSELS = 'VV'
+    STATUES_BUSTS = 'SB'
+    ARCHITECTURAL_SCULPTURE = 'AS'
+    RELIEF_SCULPTURE = 'RS'
+    INSCRIPTIONS = 'IS'
+    MOSAICS = 'MS'
+    COINS = 'CS'
+    PAINTING = 'PT'
+    SARCOPHAGUS = 'SC'
+    JEWELRY_BEAUTY = 'JB'
+    TOOLS_WEAPONS = 'TW'
+    LAMPS = 'LP'
+    FIGURINES_VOTIVES = 'FV'
+    PLANS_PHOTOS = 'PP'
+    MODELS_RECONSTRUCTIONS = 'MR' 
+    OBJECT_OTHER = 'OO'
+    object_type_choices = [
+	(VASES_VESSELS, 'Vases & Vessels'),
+	(STATUES_BUSTS, 'Statues & Busts'),
+	(ARCHITECTURAL_SCULPTURE, 'Architectural Sculpture'),
+	(RELIEF_SCULPTURE, 'Relief Sculpture'),
+	(INSCRIPTIONS, 'Inscriptions'),
+	(MOSAICS, 'Mosaics'),
+	(COINS, 'Coins'),
+	(PAINTING, 'Painting'),
+	(SARCOPHAGUS, 'Sarcophagus'),
+	(JEWELRY_BEAUTY, 'Jewelry & Beauty'),
+	(TOOLS_WEAPONS, 'Tools & Weapons'),
+	(LAMPS, 'Lamps'),
+	(FIGURINES_VOTIVES, 'Figurines & Votives'),
+	(PLANS_PHOTOS, 'Plans & Photos'),
+	(MODELS_RECONSTRUCTIONS, 'Models & Reconstructions'),
+	(OBJECT_OTHER, 'Other'),
+    ]   
+    object_type = models.CharField(max_length=2,choices=object_type_choices,default=OBJECT_OTHER)
+#Vase Technique
+    HAND_THROWN = 'HT'
+    GEOMETRIC = 'GM'
+    BLACK_FIGURE = 'BF'
+    RED_FIGURE = 'RF'
+    STAMPED = 'SM'
+    MOLD_MADE = 'MM'
+    UNDECORATED = 'UD'
+    VTECH_OTHER = 'TO'
+    vase_technique_choices = [
+	(HAND_THROWN, 'Hand-Thrown'),
+	(GEOMETRIC, 'Geometric'),
+	(BLACK_FIGURE, 'Black-Figure'),
+	(RED_FIGURE, 'Red-Figure'),
+	(STAMPED, 'Stamped'),
+	(MOLD_MADE, 'Mold-Made'),
+	(UNDECORATED, 'Undecorated'),
+	(VTECH_OTHER, 'Other'),
+    ]
+    vase_technique = models.CharField(max_length=2,choices=vase_technique_choices,blank=True,)
+#Vase Shape
+    AMPHORA = 'AMP'
+    KRATER = 'KRA'
+    HYDRIA = 'HYD'
+    KYLIX = 'KYL'
+    PITHOS = 'PIT'
+    KANTHAROS = 'KAN'
+    OLPE = 'OLP'
+    OINOCHOE = 'OIN'
+    LEBES_GAMIKOS = 'LEB'
+    PELIKE = 'PEL'
+    STAMNOS = 'STA'
+    DINOS = 'DIN'
+    PSYKTER = 'PSY'
+    PLATE = 'PLA'
+    PHIALE = 'PHI'
+    RHYTON = 'RHY'
+    MASTOS = 'MAS'
+    SKYPHOS = 'SKY'
+    ALABASTRON = 'ALA'
+    ARYBALLOS = 'ARY'
+    LEKYTHOS = 'LEK'
+    LOUTROPHOROS = 'LOU'
+    PYXIS = 'PYX'
+    VSHAPE_OTHER = 'SO'
+    vase_shape_choices = [
+	(HAND_THROWN, 'Hand-Thrown'),
+	(GEOMETRIC, 'Geometric'),
+	(BLACK_FIGURE, 'Black-Figure'),
+	(RED_FIGURE, 'Red-Figure'),
+	(STAMPED, 'Stamped'),
+	(MOLD_MADE, 'Mold-Made'),
+	(UNDECORATED, 'Undecorated'),
+	(VTECH_OTHER, 'Other'),
+    ]
+    vase_technique = models.CharField(max_length=2,choices=vase_technique_choices,blank=True,)
 
     data = models.ImageField(upload_to='images')
     data_thumbnail = ImageSpecField(source='data',
@@ -69,22 +226,6 @@ class Image(models.Model):
     def mtime(self):
         return datetime.fromtimestamp(os.path.getmtime(self.data.path))
 
-    @property
-    def title(self):
-        if hasattr(self, '_title'):
-            return self._title
-        """ Derive a title from the original filename """
-        # remove extension
-        filename = Path(self.data.name).with_suffix('').name
-        # convert spacing characters to whitespaces
-        name = filename.translate(str.maketrans('_', ' '))
-        # return with first letter caps
-        return name.title()
-
-    # Temporary override for album highlights
-    @title.setter
-    def title(self, name):
-        self._title = name
 
     def get_absolute_url(self):
         return reverse('gallery:image_detail', kwargs={'pk': self.pk, 'slug': self.slug})

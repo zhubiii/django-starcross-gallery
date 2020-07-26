@@ -1,4 +1,4 @@
-{% extends "gallery/gallery_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}
@@ -18,22 +18,77 @@
 
 {% block content %}
 
-<!--<h2>{{ album.title }}</h2>-->
+<h2 class="title_font title_color mt-4 mx-5 px-5">{{ album.title }}</h2>
+<h5 class="font-weight-light mx-5 px-5 mb-2">{{ album.description }}<hr/></h5>
 
-{% include "gallery/partials/image_upload_form.html" %}
 
-<div id="image_container">
+{% for image in images %}
 
-    {% for image in images %}
+	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
 
-        <a href="{% url 'gallery:album_image_detail' album.pk image.pk image.slug %}#image_{{ image.pk }}">
 
-            {% include "gallery/partials/thumbnail.html" %}
+			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
 
-        </a>
 
-    {% endfor %}
 
+			{% elif forloop.counter|divisibleby:4 %}
+
+			<div class="col-sm mr-5 pr5">
+
+
+
+			{% elif forloop.counter0|divisibleby:4  %}
+
+			<div class="col-sm ml-5 pl-5">
+
+
+
+			{% else %}
+
+			<div class="col-sm">
+
+
+
+			{% endif %}
+
+
+
+    			<a class="nounderline" href="{% url 'gallery:album_image_detail' album.pk image.pk image.slug %}#image_{{ image.pk }}">
+
+			<div class="card border-0 home-card">
+
+				<img src="{{ image.data_thumbnail.url }}" class="card-img-top" alt="{{ image.title }}">
+
+				<div class="card-body">
+
+					<h5 class="card-title title_color font-weight-bold text-center">{{ image.title }}</h5>
+
+					<!--<p class="card-text text-body">{{ image.description }}</p>-->
+
+				</div>
+
+			</div>
+
+    			</a>
+
+			</div>
+
+
+
+		<!--Make sure only 4 columns per row-->
+
+		{% if forloop.counter|divisibleby:4 %}
+
+			</div>
+
+			<div class="row my-5 mx-auto">
+
+		{% endif %}
+
+
+	{% if forloop.last %}</div>{% endif %}
+
+{% endfor %}
 
     {% if not album.images.all and user.is_authenticated %}
 
@@ -42,7 +97,5 @@
         </div>
 
     {% endif %}
-
-</div>
 
 {% endblock %}
