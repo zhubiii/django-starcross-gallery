@@ -158,18 +158,64 @@ class Image(models.Model):
     LEKYTHOS = 'LEK'
     LOUTROPHOROS = 'LOU'
     PYXIS = 'PYX'
-    VSHAPE_OTHER = 'SO'
+    VSHAPE_OTHER = 'VSO'
     vase_shape_choices = [
-	(HAND_THROWN, 'Hand-Thrown'),
-	(GEOMETRIC, 'Geometric'),
-	(BLACK_FIGURE, 'Black-Figure'),
-	(RED_FIGURE, 'Red-Figure'),
-	(STAMPED, 'Stamped'),
-	(MOLD_MADE, 'Mold-Made'),
-	(UNDECORATED, 'Undecorated'),
-	(VTECH_OTHER, 'Other'),
+	(AMPHORA, 'Amphora'),
+	(KRATER, 'Krater'),
+	(HYDRIA, 'Hydria'),
+	(KYLIX, 'Kylix'),
+	(PITHOS, 'Pithos'),
+	(KANTHAROS, 'Kantharos'),
+	(OLPE, 'Olpe'),
+	(OINOCHOE, 'Oinochoe'),
+	(LEBES_GAMIKOS, 'Lebes Gamikos'),
+	(PELIKE, 'Pelike'),
+	(STAMNOS, 'Stamnos'),
+	(DINOS, 'Dinos'),
+	(PSYKTER, 'Psykter'),
+	(PLATE, 'Plate'),
+	(PHIALE, 'Phiale'),
+	(RHYTON, 'Rhyton'),
+	(MASTOS, 'Mastos'),
+	(SKYPHOS, 'Skyphos'),
+	(ALABASTRON, 'Alabastron'),
+	(ARYBALLOS, 'Aryballos'),
+	(LEKYTHOS, 'Lekythos'),
+	(LOUTROPHOROS, 'Loutrophoros'),
+	(PYXIS, 'Pyxis'),
+	(VSHAPE_OTHER, 'Other'),
     ]
-    vase_technique = models.CharField(max_length=2,choices=vase_technique_choices,blank=True,)
+    vase_shape = models.CharField(max_length=3,choices=vase_shape_choices,blank=True,)
+#Material
+    STONE = 'ST'
+    TERRACOTTA = 'TC'
+    BONE = 'BN'
+    GLASS = 'GL'
+    IVORY = 'IV'
+    WOOD = 'WD'
+    FRESCO = 'FR'
+    METAL_GOLD = 'MG'
+    METAL_SILVER = 'MS'
+    METAL_OTHER = 'MO'
+    ORGANIC = 'OG'
+    NO_ANSWER = 'NA'
+    OTHER_UNKNOWN = 'OU'
+    material_choices = [
+        (STONE,'Stone'),
+        (TERRACOTTA,'Terracotta'),
+        (BONE,'Bone'),
+        (GLASS,'Glass'),
+        (IVORY,'Ivory'),
+        (WOOD,'Wood'),
+        (FRESCO,'Fresco'),
+        (METAL_GOLD,'Metal-Gold'),
+        (METAL_SILVER,'Metal-Silver'),
+        (METAL_OTHER,'Metal-Other'),
+        (ORGANIC,'Organic'),
+        (NO_ANSWER,'N/A'),
+        (OTHER_UNKNOWN,'Other/Unknown'),
+    ]
+    material = models.CharField(max_length=2,choices=material_choices,default=OTHER_UNKNOWN)
 
     data = models.ImageField(upload_to='images')
     data_thumbnail = ImageSpecField(source='data',
