@@ -221,6 +221,70 @@ class Image(models.Model):
     country = CountryField(blank_label='(Country of Origin)')
 #Artist/Attribution
     artist_or_attribution = models.CharField(max_length=150)
+#Associated Building/site
+    MYCENAE = 'MY'
+    ATHENIAN_ACROPOLIS = 'AA'
+    PARTHENON = 'PR'
+    PANTHEON = 'PN'
+    ALTAR_OF_GODS = 'AG'
+    EPHESOS = 'EP'
+    APHRODISIAS = 'AD'
+    SEBASTEION = 'SB'
+    PERGAMON = 'PG'
+    PERGE = 'PE'
+    SAGALASSOS = 'SG'
+    TEMPLE_ZEUS = 'TZ'
+    OLYMPIA = 'OA'
+    CORINTH = 'CR'
+    ROMAN_FORUM = 'RF'
+    ATHENS = 'AT'
+    ROME = 'RM'
+    POMPEII = 'PI'
+    ARA_PACIS = 'AP'
+    associated_building_choices = [
+        (MYCENAE, 'Mycenae'),
+        (ATHENIAN_ACROPOLIS, 'Athenian Acropolis'),
+        (PARTHENON, 'Parthenon'),
+        (PANTHEON, 'Pantheon'),
+        (ALTAR_OF_GODS, 'Altar of the Gods (Pergamon)'),
+        (EPHESOS, 'Ephesos'),
+        (APHRODISIAS, 'Aphrodisias'),
+        (SEBASTEION, 'Sebasteion (Aphrodisias)'),
+        (PERGAMON, 'Pergamon'),
+        (PERGE, 'Perge'),
+        (SAGALASSOS, 'Sagalassos'),
+        (TEMPLE_ZEUS, 'Temple of Zeus (Olympia)'),
+        (OLYMPIA, 'Olympia'),
+        (CORINTH, 'Corinth'),
+        (ROMAN_FORUM, 'Roman Forum'),
+        (ATHENS, 'Athens'),
+        (ROME, 'Rome'),
+        (POMPEII, 'Pompeii'),
+        (ARA_PACIS, 'Ara Pacis'),
+    ]
+    associated_building = models.CharField(max_length=2, choices=associated_building_choices,blank=True)
+#subject
+    MYTH = 'MY'
+    DAILY_LIFE = 'DL'
+    POLITICS = 'PL'
+    RITUAL = 'RT'
+    DECORATIVE = 'DC'
+    MILITARY = 'ML'
+    FUNERARY = 'FN'
+    subject_choices = [
+        (MYTH, 'Myth'),
+        (DAILY_LIFE, 'Daily Life'),
+        (POLITICS, 'Politics'),
+        (RITUAL, 'Ritual'),
+        (DECORATIVE, 'Decorative'),
+        (MILITARY, 'Military'),
+        (FUNERARY, 'Funerary'),
+    ]
+    subject = models.CharField(max_length=2, choices=subject_choices,blank=True)
+#Description
+    description = models.TextField(default = 'No description added')
+
+
 
 
     data = models.ImageField(upload_to='images')
