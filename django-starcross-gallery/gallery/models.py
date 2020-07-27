@@ -285,6 +285,70 @@ class Image(models.Model):
     description = models.TextField(default = 'No description added')
 #Museum Collection
     ATHENS_NATIONAL_MUSEUM = 'ANM'
+    ATHENIAN_ACROPOLIS_MUSEUM = 'AAM'
+    GETTY_VILLA = 'GTV'
+    SAN_ANTONIO_MUSEUM = 'SAM'
+    CAPITOLINE_MUSEUM = 'CPM'
+    MONTEMARTINI = 'MMI'
+    ANTAKYA = 'ATK'
+    ANTALYA = 'ANT'
+    OLYMPIA = 'OLY'
+    APHRODISAS = 'APH'
+    EPHESOS = 'EPH'
+    CORINTH = 'COR'
+    ISTANBUL = 'IST'
+    ISTHMIA = 'IMA'
+    NEMEA = 'NMA'
+    PERGAMON_MUSEUM = 'PMB'
+    SEVILLE = 'SVL'
+    HOUSTON_GLADIATOR_EXHIBIT = 'HGE'
+    VATICAN_MUSEUM = 'VTM'
+    ZEUGMA = 'ZGM'
+    MYCENAE = 'MYC'
+    DELPHI = 'DEL'
+    ELEUSIS = 'ELE'
+    HIERAPOLIS = 'HPS'
+    BERGAMA = 'BMA'
+    PELLA = 'PLA'
+    VERGINA = 'VGA'
+    IZMIR = 'IZM'
+    EPIDAUROS = 'EPI'
+    BOSTON_MUSEUM_FINE_ARTS = 'BMF'
+    SAGALASSOS = 'SAG'
+    museum_collection_choices = [
+        (ATHENS_NATIONAL_MUSEUM, 'Athens National Museum'),
+        (ATHENIAN_ACROPOLIS_MUSEUM, 'Athenian Acropolis Museum'),
+        (GETTY_VILLA, 'Getty Villa'),
+        (SAN_ANTONIO_MUSEUM, 'San Antonio Museum of Art'),
+        (CAPITOLINE_MUSEUM, 'Capitoline Museum'),
+        (MONTEMARTINI, 'Montemartini (Rome)'),
+        (ANTAKYA, 'Antakya'),
+        (ANTALYA, 'Antalya'),
+        (OLYMPIA, 'Olympia'),
+        (APHRODISAS, 'Aphrodisas'),
+        (EPHESOS, 'Ephesos'),
+        (CORINTH, 'Corinth'),
+        (ISTANBUL, 'Istanbul'),
+        (ISTHMIA, 'Isthmia'),
+        (NEMEA, 'Nemea'),
+        (PERGAMON_MUSEUM, 'Pergamon Museum (Berlin)'),
+        (SEVILLE, 'Seville'),
+        (HOUSTON_GLADIATOR_EXHIBIT, 'Houston Gladiator Exhibit'),
+        (VATICAN_MUSEUM, 'Vatican Museum'),
+        (ZEUGMA, 'Zeugma'),
+        (MYCENAE, 'Mycenae'),
+        (DELPHI, 'Delphi'),
+        (ELEUSIS, 'Eleusis'),
+        (HIERAPOLIS, 'Hierapolis'),
+        (BERGAMA, 'Bergama'),
+        (PELLA, 'Pella'),
+        (VERGINA, 'Vergina'),
+        (IZMIR, 'Izmir'),
+        (EPIDAUROS, 'Epidauros'),
+        (BOSTON_MUSEUM_FINE_ARTS, 'Boston Museum of Fine Arts'),
+        (SAGALASSOS, 'Sagalassos'),
+    ]
+    museum_collection = models.CharField(max_length=3,choices=museum_collection_choices,blank=True)
 
 
 
