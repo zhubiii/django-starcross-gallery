@@ -220,7 +220,7 @@ class Image(models.Model):
 #country
     country = CountryField(blank_label='(Country of Origin)')
 #Artist/Attribution
-    artist_or_attribution = models.CharField(max_length=150)
+    artist_or_attribution = models.CharField(max_length=150,blank=True)
 #Associated Building/site
     MYCENAE = 'MY'
     ATHENIAN_ACROPOLIS = 'AA'
@@ -283,7 +283,8 @@ class Image(models.Model):
     subject = models.CharField(max_length=2, choices=subject_choices,blank=True)
 #Description
     description = models.TextField(default = 'No description added')
-
+#Museum Collection
+    ATHENS_NATIONAL_MUSEUM = 'ANM'
 
 
 
