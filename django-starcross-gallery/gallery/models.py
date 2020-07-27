@@ -42,7 +42,7 @@ class Image(models.Model):
 	(HYBRID, 'Hybrid'),
 	(CULTURE_OTHER, 'Other'),
     ]
-    culture = models.CharField(max_length=2,choices=culture_choices,default=CULTURE_OTHER,)
+    culture = models.CharField(max_length=2,choices=culture_choices,blank=True)
 #Period Options
     GENERAL = 'GN'
     EARLY = 'ER'
@@ -54,7 +54,7 @@ class Image(models.Model):
 	(MIDDLE, 'Middle'),
 	(LATE, 'Late'),
     ]
-    period_prefix = models.CharField(max_length=2, choices=period_prefix_choices,default=GENERAL,)
+    period_prefix = models.CharField(max_length=2, choices=period_prefix_choices,blank=True)
 
     BRONZE = 'BR'
     DARK = 'DK'
@@ -78,7 +78,7 @@ class Image(models.Model):
 	(LATE_ANTIQUE, 'Late Antique'),
 	(PERIOD_OTHER, 'Other'),
     ]
-    period = models.CharField(max_length=2, choices=period_choices,default=PERIOD_OTHER,)
+    period = models.CharField(max_length=2, choices=period_choices,blank=True)
 #Object Type
     VASES_VESSELS = 'VV'
     STATUES_BUSTS = 'SB'
@@ -114,7 +114,7 @@ class Image(models.Model):
 	(MODELS_RECONSTRUCTIONS, 'Models & Reconstructions'),
 	(OBJECT_OTHER, 'Other'),
     ]   
-    object_type = models.CharField(max_length=2,choices=object_type_choices,default=OBJECT_OTHER)
+    object_type = models.CharField(max_length=2,choices=object_type_choices,blank=True)
 #Vase Technique
     HAND_THROWN = 'HT'
     GEOMETRIC = 'GM'
@@ -216,9 +216,9 @@ class Image(models.Model):
         (NO_ANSWER,'N/A'),
         (OTHER_UNKNOWN,'Other/Unknown'),
     ]
-    material = models.CharField(max_length=2,choices=material_choices,default=OTHER_UNKNOWN)
+    material = models.CharField(max_length=2,choices=material_choices,blank=True)
 #country
-    country = CountryField(blank_label='(Country of Origin)')
+    country = CountryField(blank_label='(Country of Origin)',blank=True)
 #Artist/Attribution
     artist_or_attribution = models.CharField(max_length=150,blank=True)
 #Associated Building/site
@@ -349,7 +349,9 @@ class Image(models.Model):
         (SAGALASSOS, 'Sagalassos'),
     ]
     museum_collection = models.CharField(max_length=3,choices=museum_collection_choices,blank=True)
-
+#boolean validation
+    is_validated = models.BooleanField(default=False)
+    incomplete_info = models.BooleanField(default=True)
 
 
     data = models.ImageField(upload_to='images')
