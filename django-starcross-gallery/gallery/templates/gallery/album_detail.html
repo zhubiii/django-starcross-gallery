@@ -55,9 +55,9 @@
 
     			<a class="nounderline" href="{% url 'gallery:album_image_detail' album.pk image.pk image.slug %}#image_{{ image.pk }}">
 
-			<div class="card border-0 home-card">
+			<div class="card border-0">
 
-				<img src="{{ image.data_thumbnail.url }}" class="card-img-top" alt="{{ image.title }}">
+				<img src="{{ image.data_thumbnail.url }}" class="photo-card-img-top card-img-top" alt="{{ image.title }}">
 
 				<div class="card-body">
 

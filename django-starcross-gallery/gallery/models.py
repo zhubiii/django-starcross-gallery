@@ -16,7 +16,7 @@ import os
 class Image(models.Model):
 #Parameters
     title = models.CharField(default='no title',max_length=250)
-    date = models.DateField(blank=True, null=True)
+    date = models.DateField(blank=True,null=True)
 #Culture Options
     GREEK = 'GK'
     ROMAN = 'R'
@@ -42,7 +42,7 @@ class Image(models.Model):
 	(HYBRID, 'Hybrid'),
 	(CULTURE_OTHER, 'Other'),
     ]
-    culture = models.CharField(max_length=2,choices=culture_choices,blank=True)
+    culture = models.CharField(max_length=2,choices=culture_choices,blank=True,null=True)
 #Period Options
     GENERAL = 'GN'
     EARLY = 'ER'
@@ -54,7 +54,7 @@ class Image(models.Model):
 	(MIDDLE, 'Middle'),
 	(LATE, 'Late'),
     ]
-    period_prefix = models.CharField(max_length=2, choices=period_prefix_choices,blank=True)
+    period_prefix = models.CharField(max_length=2, choices=period_prefix_choices,blank=True,null=True)
 
     BRONZE = 'BR'
     DARK = 'DK'
@@ -78,7 +78,7 @@ class Image(models.Model):
 	(LATE_ANTIQUE, 'Late Antique'),
 	(PERIOD_OTHER, 'Other'),
     ]
-    period = models.CharField(max_length=2, choices=period_choices,blank=True)
+    period = models.CharField(max_length=2, choices=period_choices,blank=True,null=True)
 #Object Type
     VASES_VESSELS = 'VV'
     STATUES_BUSTS = 'SB'
@@ -114,7 +114,7 @@ class Image(models.Model):
 	(MODELS_RECONSTRUCTIONS, 'Models & Reconstructions'),
 	(OBJECT_OTHER, 'Other'),
     ]   
-    object_type = models.CharField(max_length=2,choices=object_type_choices,blank=True)
+    object_type = models.CharField(max_length=2,choices=object_type_choices,blank=True,null=True)
 #Vase Technique
     HAND_THROWN = 'HT'
     GEOMETRIC = 'GM'
@@ -134,7 +134,7 @@ class Image(models.Model):
 	(UNDECORATED, 'Undecorated'),
 	(VTECH_OTHER, 'Other'),
     ]
-    vase_technique = models.CharField(max_length=2,choices=vase_technique_choices,blank=True,)
+    vase_technique = models.CharField(max_length=2,choices=vase_technique_choices,blank=True,null=True,)
 #Vase Shape
     AMPHORA = 'AMP'
     KRATER = 'KRA'
@@ -186,7 +186,7 @@ class Image(models.Model):
 	(PYXIS, 'Pyxis'),
 	(VSHAPE_OTHER, 'Other'),
     ]
-    vase_shape = models.CharField(max_length=3,choices=vase_shape_choices,blank=True,)
+    vase_shape = models.CharField(max_length=3,choices=vase_shape_choices,blank=True,null=True,)
 #Material
     STONE = 'ST'
     TERRACOTTA = 'TC'
@@ -216,11 +216,11 @@ class Image(models.Model):
         (NO_ANSWER,'N/A'),
         (OTHER_UNKNOWN,'Other/Unknown'),
     ]
-    material = models.CharField(max_length=2,choices=material_choices,blank=True)
+    material = models.CharField(max_length=2,choices=material_choices,blank=True,null=True)
 #country
-    country = CountryField(blank_label='(Country of Origin)',blank=True)
+    country = CountryField(blank_label='(Country of Origin)',blank=True,null=True)
 #Artist/Attribution
-    artist_or_attribution = models.CharField(max_length=150,blank=True)
+    artist_or_attribution = models.CharField(max_length=150,blank=True,null=True)
 #Associated Building/site
     MYCENAE = 'MY'
     ATHENIAN_ACROPOLIS = 'AA'
@@ -241,6 +241,7 @@ class Image(models.Model):
     ROME = 'RM'
     POMPEII = 'PI'
     ARA_PACIS = 'AP'
+    BUILDING_OTHER='BO'
     associated_building_choices = [
         (MYCENAE, 'Mycenae'),
         (ATHENIAN_ACROPOLIS, 'Athenian Acropolis'),
@@ -261,8 +262,9 @@ class Image(models.Model):
         (ROME, 'Rome'),
         (POMPEII, 'Pompeii'),
         (ARA_PACIS, 'Ara Pacis'),
+        (BUILDING_OTHER,'Other'),
     ]
-    associated_building = models.CharField(max_length=2, choices=associated_building_choices,blank=True)
+    associated_building = models.CharField(max_length=2, choices=associated_building_choices,blank=True,null=True)
 #subject
     MYTH = 'MY'
     DAILY_LIFE = 'DL'
@@ -271,6 +273,7 @@ class Image(models.Model):
     DECORATIVE = 'DC'
     MILITARY = 'ML'
     FUNERARY = 'FN'
+    SUBJECT_OTHER = 'SO'
     subject_choices = [
         (MYTH, 'Myth'),
         (DAILY_LIFE, 'Daily Life'),
@@ -279,10 +282,11 @@ class Image(models.Model):
         (DECORATIVE, 'Decorative'),
         (MILITARY, 'Military'),
         (FUNERARY, 'Funerary'),
+        (SUBJECT_OTHER, 'Other'),
     ]
-    subject = models.CharField(max_length=2, choices=subject_choices,blank=True)
+    subject = models.CharField(max_length=2, choices=subject_choices,blank=True,null=True)
 #Description
-    description = models.TextField(default = 'No description added')
+    description = models.TextField(default = 'No description added',null=True)
 #Museum Collection
     ATHENS_NATIONAL_MUSEUM = 'ANM'
     ATHENIAN_ACROPOLIS_MUSEUM = 'AAM'
@@ -315,6 +319,7 @@ class Image(models.Model):
     EPIDAUROS = 'EPI'
     BOSTON_MUSEUM_FINE_ARTS = 'BMF'
     SAGALASSOS = 'SAG'
+    MUSEUM_OTHER = 'MUO'
     museum_collection_choices = [
         (ATHENS_NATIONAL_MUSEUM, 'Athens National Museum'),
         (ATHENIAN_ACROPOLIS_MUSEUM, 'Athenian Acropolis Museum'),
@@ -347,8 +352,9 @@ class Image(models.Model):
         (EPIDAUROS, 'Epidauros'),
         (BOSTON_MUSEUM_FINE_ARTS, 'Boston Museum of Fine Arts'),
         (SAGALASSOS, 'Sagalassos'),
+        (MUSEUM_OTHER,'Other'),
     ]
-    museum_collection = models.CharField(max_length=3,choices=museum_collection_choices,blank=True)
+    museum_collection = models.CharField(max_length=3,choices=museum_collection_choices,blank=True,null=True)
 #boolean validation
     is_validated = models.BooleanField(default=False)
     incomplete_info = models.BooleanField(default=True)
