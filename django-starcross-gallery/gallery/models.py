@@ -16,7 +16,7 @@ import os
 class Image(models.Model):
 #Parameters
     title = models.CharField(max_length=250)
-    date = models.CharField(blank=True,null=True,max_length=300)
+    date = models.CharField(blank=True,null=True,max_length=300,verbose_name='Specific Date(s)')
 #Culture Options
     GREEK = 'GK'
     ROMAN = 'R'
@@ -231,50 +231,55 @@ class Image(models.Model):
     country = CountryField(blank_label='(Country of Origin)',blank=True,null=True)
 #Artist/Attribution
     artist_or_attribution = models.CharField(max_length=150,blank=True,null=True)
+#CHANGED
 #Associated Building/site
-    MYCENAE = 'MY'
-    ATHENIAN_ACROPOLIS = 'AA'
-    PARTHENON = 'PR'
-    PANTHEON = 'PN'
-    ALTAR_OF_GODS = 'AG'
-    EPHESOS = 'EP'
-    APHRODISIAS = 'AD'
-    SEBASTEION = 'SB'
-    PERGAMON = 'PG'
-    PERGE = 'PE'
-    SAGALASSOS = 'SG'
-    TEMPLE_ZEUS = 'TZ'
-    OLYMPIA = 'OA'
-    CORINTH = 'CR'
-    ROMAN_FORUM = 'RF'
-    ATHENS = 'AT'
-    ROME = 'RM'
-    POMPEII = 'PI'
-    ARA_PACIS = 'AP'
-    BUILDING_OTHER='BO'
-    associated_building_choices = [
-        (MYCENAE, 'Mycenae'),
-        (ATHENIAN_ACROPOLIS, 'Athenian Acropolis'),
-        (PARTHENON, 'Parthenon'),
-        (PANTHEON, 'Pantheon'),
-        (ALTAR_OF_GODS, 'Altar of the Gods (Pergamon)'),
-        (EPHESOS, 'Ephesos'),
-        (APHRODISIAS, 'Aphrodisias'),
-        (SEBASTEION, 'Sebasteion (Aphrodisias)'),
-        (PERGAMON, 'Pergamon'),
-        (PERGE, 'Perge'),
-        (SAGALASSOS, 'Sagalassos'),
-        (TEMPLE_ZEUS, 'Temple of Zeus (Olympia)'),
-        (OLYMPIA, 'Olympia'),
-        (CORINTH, 'Corinth'),
-        (ROMAN_FORUM, 'Roman Forum'),
-        (ATHENS, 'Athens'),
-        (ROME, 'Rome'),
-        (POMPEII, 'Pompeii'),
-        (ARA_PACIS, 'Ara Pacis'),
-        (BUILDING_OTHER,'Other'),
-    ]
-    associated_building = models.CharField(max_length=2, choices=associated_building_choices,blank=True,null=True)
+#   MYCENAE = 'MY'
+#   ATHENIAN_ACROPOLIS = 'AA'
+#   PARTHENON = 'PR'
+#   PANTHEON = 'PN'
+#   ALTAR_OF_GODS = 'AG'
+#   EPHESOS = 'EP'
+#   APHRODISIAS = 'AD'
+#   SEBASTEION = 'SB'
+#   PERGAMON = 'PG'
+#   PERGE = 'PE'
+#   SAGALASSOS = 'SG'
+#   TEMPLE_ZEUS = 'TZ'
+#   OLYMPIA = 'OA'
+#   CORINTH = 'CR'
+#   ROMAN_FORUM = 'RF'
+#   ATHENS = 'AT'
+#   ROME = 'RM'
+#   POMPEII = 'PI'
+#   ARA_PACIS = 'AP'
+#   BUILDING_OTHER='BO'
+#   associated_building_choices = [
+#       (MYCENAE, 'Mycenae'),
+#       (ATHENIAN_ACROPOLIS, 'Athenian Acropolis'),
+#       (PARTHENON, 'Parthenon'),
+#       (PANTHEON, 'Pantheon'),
+#       (ALTAR_OF_GODS, 'Altar of the Gods (Pergamon)'),
+#       (EPHESOS, 'Ephesos'),
+#       (APHRODISIAS, 'Aphrodisias'),
+#       (SEBASTEION, 'Sebasteion (Aphrodisias)'),
+#       (PERGAMON, 'Pergamon'),
+#       (PERGE, 'Perge'),
+#       (SAGALASSOS, 'Sagalassos'),
+#       (TEMPLE_ZEUS, 'Temple of Zeus (Olympia)'),
+#       (OLYMPIA, 'Olympia'),
+#       (CORINTH, 'Corinth'),
+#       (ROMAN_FORUM, 'Roman Forum'),
+#       (ATHENS, 'Athens'),
+#       (ROME, 'Rome'),
+#       (POMPEII, 'Pompeii'),
+#       (ARA_PACIS, 'Ara Pacis'),
+#       (BUILDING_OTHER,'Other'),
+#   ]
+#   associated_building = models.CharField(max_length=2, choices=associated_building_choices,blank=True,null=True)
+
+    associated_building = models.CharField(max_length=300,blank=True,null=True)
+    associated_site = models.CharField(max_length=300,blank=True,null=True)
+
 #subject
     MYTH = 'MY'
     DAILY_LIFE = 'DL'
