@@ -23,6 +23,7 @@
 
 
 {% for image in images %}
+{% if image.is_validated %}
 
 	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
 
@@ -88,6 +89,7 @@
 
 	{% if forloop.last %}</div>{% endif %}
 
+{% endif %}
 {% endfor %}
 
     {% if not album.images.all and user.is_authenticated %}
