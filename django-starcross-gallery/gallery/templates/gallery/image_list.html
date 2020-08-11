@@ -23,6 +23,7 @@
 <div id="image_container">
 
     {% for image in image_list %}
+	{% if image.is_validated %} 
 
         <a href="{% url 'gallery:image_detail' image.pk image.slug %}">
 
@@ -30,6 +31,7 @@
 
         </a>
 
+	{% endif %}
     {% endfor %}
 
 
