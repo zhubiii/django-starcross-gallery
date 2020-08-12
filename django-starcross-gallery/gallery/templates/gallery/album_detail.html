@@ -17,30 +17,30 @@
 
 
 {% block content %}
-
-<h2 class="title_font title_color mt-4 mx-5 px-5">{{ album.title }}</h2>
-<h5 class="font-weight-light mx-5 px-5 mb-2">{{ album.description }}<hr/></h5>
+<div class="container px-lg-1">
+<h2 class="title_font title_color mt-4 mb-2 mx-lg-n5">{{ album.title }}</h2>
+<h5 class="font-weight-light mx-lg-n5 mb-2">{{ album.description }}<hr/></h5>
 
 
 {% for image in images %}
 {% if image.is_validated %}
 
-	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
+	{% if forloop.first %}<div class="row my-auto mx-lg-n5">{% endif %}
 
 
-			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
+			{% if forloop.first %}<div class="col-sm">
 
 
 
 			{% elif forloop.counter|divisibleby:4 %}
 
-			<div class="col-sm mr-5 pr5">
+			<div class="col-sm">
 
 
 
 			{% elif forloop.counter0|divisibleby:4  %}
 
-			<div class="col-sm ml-5 pl-5">
+			<div class="col-sm">
 
 
 
@@ -82,7 +82,7 @@
 
 			</div>
 
-			<div class="row my-5 mx-auto">
+			<div class="row my-auto mx-lg-n5">
 
 		{% endif %}
 
@@ -91,6 +91,7 @@
 
 {% endif %}
 {% endfor %}
+</div>
 
     {% if not album.images.all and user.is_authenticated %}
 

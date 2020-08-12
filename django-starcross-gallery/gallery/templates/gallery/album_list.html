@@ -17,22 +17,23 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="title_font title_color mt-4 mb-2 mx-5 px-5">ALL ALBUMS</h2>
-<h5 class="font-weight-light mx-5 px-5 mb-2">Browse all our curated collections, which include Death & Burial, Ancient Theater, Hunting & Leisure, Ritual, Labors of Hercules, and Education & Politics<hr/></h5>
+<div class="container px-lg-1">
+<h2 class="title_font title_color mt-4 mb-2 mx-lg-n5">ALL ALBUMS</h2>
+<h5 class="font-weight-light mx-lg-n5 mb-2">Browse all our curated collections, which include Death & Burial, Ancient Theater, Hunting & Leisure, Ritual, Labors of Hercules, and Education & Politics<hr/></h5>
 
 {% for album in object_list %}
-	{% if forloop.first %}<div class="row my-auto mx-auto">{% endif %}
+	{% if forloop.first %}<div class="row my-auto mx-lg-n5">{% endif %}
 
 
         {% if album.display_highlight %}
             {% with album.display_highlight as image %}
-			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
+			{% if forloop.first %}<div class="col-sm">
 
 			{% elif forloop.counter|divisibleby:4 %}
-			<div class="col-sm mr-5 pr5">
+			<div class="col-sm">
 
 			{% elif forloop.counter0|divisibleby:4  %}
-			<div class="col-sm ml-5 pl-5">
+			<div class="col-sm">
 
 			{% else %}
 			<div class="col-sm">
@@ -53,19 +54,19 @@
 		<!--Make sure only 4 columns per row-->
 		{% if forloop.counter|divisibleby:4 %}
 			</div>
-			<div class="row my-5 mx-auto">
+			<div class="row my-auto mx-lg-n5">
 		{% endif %}
 
             {% endwith %}
         {% else %}
 
-			{% if forloop.first %}<div class="col-sm ml-5 pl-5">
+			{% if forloop.first %}<div class="col-sm">
 
 			{% elif forloop.counter|divisibleby:4 %}
-			<div class="col-sm mr-5 pr5">
+			<div class="col-sm">
 
 			{% elif forloop.counter0|divisibleby:4  %}
-			<div class="col-sm ml-5 pl-5">
+			<div class="col-sm">
 
 			{% else %}
 			<div class="col-sm">
@@ -84,13 +85,14 @@
 		<!--Make sure only 4 columns per row-->
 		{% if forloop.counter|divisibleby:4 %}
 			</div>
-			<div class="row my-5 mx-auto">
+			<div class="row my-auto mx-lg-n5">
 		{% endif %}
 
         {% endif %}
 	{% if forloop.last %}</div>{% endif %}
 {% endfor %}
 
+</div>
 </div>
 
 {% endblock %}
