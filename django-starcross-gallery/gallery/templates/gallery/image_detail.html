@@ -77,13 +77,25 @@
 {% endblock %}
 -->
 {% block content %}
-
+<div class="container mt-4 mb-2"/>
+<!-- The photo is right aligned -->
 <a href="{{ image.data.url }}">
-<div class="card border-0" style="height:100%; width:30rem;">
+<div class="card border-0 float-right my-auto" style="height:100%; width:30rem;">
     <img class="card-img-top" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
 </div>
 </a>
+</div>
 
+<div class="card border-0 mt-4 mb-2 mx-auto" style="width:30rem;"/>
+<!-- The information is to the left -->
+<h2 class="title_font title_color mt-4 mb-2 mx-lg-n5">{{ image.title }}</h2>
+{% if image.date %}
+<h4 class="font-weight-light title_font  mx-lg-n5 mb-2">{{ image.date }}</h4>
+{% endif %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_culture_display }}</h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_period_display }}</h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_material_display }}<hr/></h4>
+<p class="mx-lg-n5 mb-2">{{ image.description }}<hr/></p>
 <!--
 <div id="album_preview">
 {% if album_images %}
@@ -112,5 +124,6 @@
 {% endif %}
  </div>
 -->
+</div>
 
 {% endblock %}
