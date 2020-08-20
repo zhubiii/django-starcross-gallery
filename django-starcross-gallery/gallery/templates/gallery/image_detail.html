@@ -78,24 +78,39 @@
 -->
 {% block content %}
 <div class="container mt-4 mb-2"/>
+<div class="row">
+<!-- The information is to the left -->
+<div class="col">
+<div class="card border-0 mt-4 mb-2 mx-auto" style="width:30rem;"/>
+<h2 class="title_font title_color mt-4 mb-2 mx-lg-n5">{{ image.title }}</h2>
+
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Culture: <span class="title_font title_color"/>{{ image.get_culture_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Period: <span class="title_font title_color"/>{{ image.get_period_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Material: <span class="title_font title_color"/>{{ image.get_material_display }}</span></h4>
+{% if image.date %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Dates: <span class="title_font title_color"/>{{ image.date }}</span></h4>
+{% endif %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Object Type: <span class="title_font title_color"/>{{ image.get_object_type }}</span></h4>
+{% if image.artist_or_attribution  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Artist: <span class="title_font title_color"/>{{ image.artist_or_attribution }}</span></h4>
+{% endif %}
+<p class="mx-lg-n5 mb-2 text-left">{{ image.description }}<hr/></p>
+</div>
+</div>
 <!-- The photo is right aligned -->
+<div class="col">
 <a href="{{ image.data.url }}">
-<div class="card border-0 float-right my-auto" style="height:100%; width:30rem;">
+<div class="card border-0  my-auto" style="height:100%; width:30rem;">
     <img class="card-img-top" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
 </div>
 </a>
-</div>
+</div><!--End of Col-->
 
-<div class="card border-0 mt-4 mb-2 mx-auto" style="width:30rem;"/>
-<!-- The information is to the left -->
-<h2 class="title_font title_color mt-4 mb-2 mx-lg-n5">{{ image.title }}</h2>
-{% if image.date %}
-<h4 class="font-weight-light title_font  mx-lg-n5 mb-2">{{ image.date }}</h4>
-{% endif %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_culture_display }}</h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_period_display }}</h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">{{ image.get_material_display }}<hr/></h4>
-<p class="mx-lg-n5 mb-2">{{ image.description }}<hr/></p>
+</div> <!--End of row-->
+
+
+
+
 <!--
 <div id="album_preview">
 {% if album_images %}
