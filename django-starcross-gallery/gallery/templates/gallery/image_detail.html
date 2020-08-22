@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load comments %}
+{% load comments_xtd %}
 
 {% block title %}
     {% if album %}{{ album.title }} - {% endif %}{{ image.title }}
@@ -108,10 +110,76 @@
 
 </div> <!--End of row-->
 
+<div class="row justify-content-end">
+<div class="col-sm-6">
+
+{% get_comment_count for object as comment_count %}
+<!--
+<div class="py-4 text-center">
+
+  {{ comment_count }} comment{{ comment_count|pluralize }}
+
+  ha{{ comment_count|pluralize:"s,ve" }} been posted.
+
+</div>
+-->
+{% if comment_count %}
+
+
+<div id="comments" class="comments" style="width:44rem;">
+<hr/>
+
+<ul class="media-list">
+
+  {% render_xtdcomment_tree for object allow_feedback show_feedback %}
+
+</ul>
+
+</div>
+
+
+{% endif %}
+
+
+{% if user.is_authenticated %}
+<div class="card card-block mb-5" style="width:44rem;">
+
+  <div class="card-body">
+
+    <h4 class="card-title title_font text-center pb-3">Share your thoughts!</h4>
+
+      {% render_comment_form for object %}
+
+  </div>
+
+</div>
+{% else %}
+      <p class="text-center my-3" style="width:44rem;">
+
+        Only registered users can post comments. Please
+
+        <a class="text-greenlink" href="/login/?next={{ object.get_absolute_url }}">login</a>
+	
+	or
+
+        <a class="text-greenlink" href="/register/?next={{ object.get_absolute_url }}">register</a>.
+      </p>
+
+    {% endif %}
+
+</div>
+</div>
+
+
 <div class="container container-small">
 	<h3 class="title_font title_color mt-5 mb-3 text-left">Object Details</h3>
 	<hr>
 </div>
+
+
+
+
+
 
 <!--
 <div id="album_preview">
@@ -142,5 +210,75 @@
  </div>
 -->
 </div><!--End of container-->
+
+{% endblock %}
+
+{% block extra-js %}
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+<script>
+
+ window.comments_props = {% get_commentbox_props for object %};
+
+ window.comments_props_override = {
+
+     allow_comments: {%if object.allow_comments%}true{%else%}false{%endif%},
+
+     allow_feedback: true,
+
+     show_feedback: true,
+
+     allow_flagging: true,
+
+     polling_interval: 5000  // In milliseconds.
+
+ };
+
+</script>
+
+<script
+
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+
+  crossorigin="anonymous"></script>
+
+<script
+
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+
+  crossorigin="anonymous"></script>
+
+<script
+
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+
+  crossorigin="anonymous"></script>
+
+<script
+
+  type="text/javascript"
+
+  src="{% url 'javascript-catalog' %}"></script>
+
+<script src="{% static 'django_comments_xtd/js/vendor~plugin-2.7.0.js' %}"></script>
+
+<script src="{% static 'django_comments_xtd/js/plugin-2.7.0.js' %}"></script>
+
+<script>
+
+$(function() {
+
+  $('[data-toggle="tooltip"]').tooltip({html: true});
+
+});
+
+</script>
 
 {% endblock %}
