@@ -82,26 +82,30 @@
 <div class="row">
 <!-- The information is to the left -->
 <div class="col-sm-6">
-<div class="card border-0 my-auto mx-auto" style="width:30rem;"/>
+<div class="card border-0 my-auto mx-auto" style="width:36rem;"/>
 <h2 class="title_font title_color my-auto mx-lg-n5">{{ image.title }}</h2>
 
+<!--Nesting for side-by-side display-->
+<div class="row mt-3">
+<div class="col-sm-6">
 <h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Culture: <span class="title_font title_color"/>{{ image.get_culture_display }}</span></h4>
 <h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Period: <span class="title_font title_color"/>{{ image.get_period_display }}</span></h4>
 <h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Material: <span class="title_font title_color"/>{{ image.get_material_display }}</span></h4>
-{% if image.date %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Dates: <span class="title_font title_color"/>{{ image.date }}</span></h4>
-{% endif %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Object Type: <span class="title_font title_color"/>{{ image.get_object_type }}</span></h4>
-{% if image.artist_or_attribution  %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Artist: <span class="title_font title_color"/>{{ image.artist_or_attribution }}</span></h4>
-{% endif %}
+</div>
+<div class="col-sm-6">
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Object Type: <span class="title_font title_color"/>{{ image.get_object_type_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Subject: <span class="title_font title_color"/>{{ image.get_subject_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Museum Collection: <span class="title_font title_color"/>{{ image.get_museum_collection_display }}</span></h4>
+</div>
+</div>
+
 <p class="mx-lg-n5 text-left p_font mt-3">{{ image.description }}</p>
 </div><!--End of Card-->
 </div><!--End of column-->
 <!-- The photo is right aligned -->
 <div class="col-sm-6">
 <a href="{{ image.data.url }}">
-<div class="card border-0  my-auto" style="height:100%; width:44rem;">
+<div class="card border-0  my-auto" style="height:100%; width:42rem;">
     <img class="card-img-top" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
 </div><!--End of card-->
 </a>
@@ -124,12 +128,7 @@
 -->
 
 
-<div id="comments" style="width: 44rem;"></div>
-
-
-
-
-
+<div id="comments" style="width: 42rem;"></div>
 
 
 <!--
@@ -165,6 +164,15 @@
 <div class="container container-small center">
 	<h3 class="title_font title_color mt-5 mb-3 text-left">Object Details</h3>
 	<hr>
+
+{% if image.date %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Dates: <span class="title_font title_color"/>{{ image.date }}</span></h4>
+{% endif %}
+
+{% if image.artist_or_attribution  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Artist: <span class="title_font title_color"/>{{ image.artist_or_attribution_display }}</span></h4>
+{% endif %}
+
 </div>
 </div><!--End of container-->
 
