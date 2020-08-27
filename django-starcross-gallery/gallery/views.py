@@ -7,7 +7,7 @@ from django.templatetags.static import static
 from gallery.models import Image, Album
 from gallery.forms import ImageCreateForm
 from gallery import settings
-
+from hitcount.views import HitCountDetailView
 
 class GallerySettingsMixin(object):
     """ Apply Gallery's Settings to a view """
@@ -26,8 +26,9 @@ class GallerySettingsMixin(object):
         return context
 
 
-class ImageView(GallerySettingsMixin, DetailView):
+class ImageView(GallerySettingsMixin, HitCountDetailView):
     model = Image
+    count_hit = True
 
     def get_context_data(self, **kwargs):
         context = super(ImageView, self).get_context_data(**kwargs)

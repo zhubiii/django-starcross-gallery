@@ -10,6 +10,8 @@ from gallery import settings
 from pathlib import Path
 from datetime import datetime
 from django_countries.fields import CountryField
+from hitcount.models import HitCountMixin, HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 import os
 
 
@@ -374,6 +376,8 @@ class Image(models.Model):
     is_validated = models.BooleanField(default=False)
     incomplete_info = models.BooleanField(default=True)
 
+#hitcount
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',related_query_name='hit_count_generic_relation')
 
     data = models.ImageField(upload_to='images')
     data_thumbnail = ImageSpecField(source='data',
