@@ -88,18 +88,18 @@
 <!--Nesting for side-by-side display-->
 <div class="row mt-3">
 <div class="col-sm-6">
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Culture: <span class="title_font title_color"/>{{ image.get_culture_display }}</span></h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Period: <span class="title_font title_color"/>{{ image.get_period_display }}</span></h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Material: <span class="title_font title_color"/>{{ image.get_material_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Culture: <span class="title_font title_color"/>{{ image.get_culture_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Period: <span class="title_font title_color"/>{{ image.get_period_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Material: <span class="title_font title_color"/>{{ image.get_material_display }}</span></h4>
 </div>
 <div class="col-sm-6">
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Object Type: <span class="title_font title_color"/>{{ image.get_object_type_display }}</span></h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Subject: <span class="title_font title_color"/>{{ image.get_subject_display }}</span></h4>
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Museum Collection: <span class="title_font title_color"/>{{ image.get_museum_collection_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Object Type: <span class="title_font title_color"/>{{ image.get_object_type_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Subject: <span class="title_font title_color"/>{{ image.get_subject_display }}</span></h4>
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Museum Collection: <span class="title_font title_color"/>{{ image.get_museum_collection_display }}</span></h4>
 </div>
 </div>
 
-<p class="mx-lg-n5 text-left p_font mt-3">{{ image.description }}</p>
+<p class="mx-lg-n5 text-left  mt-5" style="font-size:20px;">{{ image.description }}</p>
 </div><!--End of Card-->
 </div><!--End of column-->
 <!-- The photo is right aligned -->
@@ -113,7 +113,47 @@
 
 </div> <!--End of row-->
 
-<div class="row justify-content-end">
+<div class="row">
+
+<div class="col-sm-6">
+<div class="card border-0 my-auto mx-auto" style="width:36rem;"/>
+<h3 class="title_font title_color mx-lg-n5 mt-5 mb-3">Additional Details<hr></h3>
+
+{% if image.date %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5  mb-2">Dates: <span class="title_font title_color"/>{{ image.date }}</span><hr></h4>
+{% endif %}
+
+{% if image.period_prefix  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Specific Period: <span class="title_font title_color"/>{{ image.get_period_prefix_display }} {{ image.get_period_display }}</span><hr></h4>
+{% endif %}
+
+{% if image.vase_technique  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Vase Technique: <span class="title_font title_color"/>{{ image.get_vase_technique_display }}</span><hr></h4>
+{% endif %}
+
+{% if image.vase_shape  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Vase Shape: <span class="title_font title_color"/>{{ image.get_vase_shape_display }}</span><hr></h4>
+{% endif %}
+
+{% if image.artist_or_attribution  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Artist/Attribution: <span class="title_font title_color"/>{{ image.artist_or_attribution }}</span><hr></h4>
+{% endif %}
+
+{% if image.country  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Country of Origin: <span class="title_font title_color"/>{{ image.get_country_display }}</span><hr></h4>
+{% endif %}
+
+{% if image.associated_building  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Associated Building: <span class="title_font title_color"/>{{ image.associated_building }}</span><hr></h4>
+{% endif %}
+
+{% if image.associated_site  %}
+<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Associated Site: <span class="title_font title_color"/>{{ image.associated_site }}</span><hr></h4>
+{% endif %}
+
+</div>
+</div>
+
 <div class="col-sm-6">
 
 {% get_comment_count for object as comment_count %}
@@ -131,6 +171,8 @@
 <div id="comments" style="width: 42rem;"></div>
 
 
+</div> <!--End of column-->
+</div><!--End of row-->
 <!--
 <div id="album_preview">
 {% if album_images %}
@@ -159,21 +201,6 @@
 {% endif %}
  </div>
 -->
-</div> <!--End of column-->
-</div><!--End of row-->
-<div class="container container-small center">
-	<h3 class="title_font title_color mt-5 mb-3 text-left">Object Details</h3>
-	<hr>
-
-{% if image.date %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Dates: <span class="title_font title_color"/>{{ image.date }}</span></h4>
-{% endif %}
-
-{% if image.artist_or_attribution  %}
-<h4 class="font-weight-light title_font text-secondary mx-lg-n5 mb-2">Artist: <span class="title_font title_color"/>{{ image.artist_or_attribution_display }}</span></h4>
-{% endif %}
-
-</div>
 </div><!--End of container-->
 
 {% endblock %}
