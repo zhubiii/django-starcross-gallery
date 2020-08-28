@@ -99,17 +99,25 @@
 <h4 class="font-weight-light title_font text-secondary mx-lg-n5 mt-2 mb-4">Museum Collection: <span class="title_font title_color"/>{{ image.get_museum_collection_display }}</span></h4>
 </div>
 </div>
+{% get_comment_count for object as comment_count %}
 
 <p class="mx-lg-n5 text-left  mt-5" style="font-size:20px;">{{ image.description }}</p>
 </div><!--End of Card-->
 </div><!--End of column-->
 <!-- The photo is right aligned -->
 <div class="col-sm-6">
-<a href="{{ image.data.url }}">
 <div class="card border-0  my-auto" style="height:100%; width:42rem;">
+<a href="{{ image.data.url }}">
     <img class="card-img-top" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
-</div><!--End of card-->
 </a>
+    <div class="card-body">
+	<span class="font-weight-bolder">{% get_hit_count for image %}</span> views
+	<span class="fa-layers fa-fw mx-3">
+	<i class="far fa-comment"></i>
+        <strong class="fa-layers-text">{{ comment_count }}</strong>
+        </span>
+    </div>
+</div><!--End of card-->
 </div><!--End of Col-->
 
 </div> <!--End of row-->
@@ -157,9 +165,6 @@
 
 <div class="col-sm-6">
 
-{% get_comment_count for object as comment_count %}
-
-<p>Views: {% get_hit_count for image %}</p>
 
 <!--
 <div class="py-4 text-center">
