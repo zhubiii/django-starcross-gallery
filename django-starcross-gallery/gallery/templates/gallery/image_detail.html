@@ -107,15 +107,33 @@
 <!-- The photo is right aligned -->
 <div class="col-sm-6">
 <div class="card border-0  my-auto" style="height:100%; width:42rem;">
+
 <a href="{{ image.data.url }}">
-    <img class="card-img-top" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
+    <img class="card-img-top image" id="image_preview" src="{{ image.data_preview.url }}" alt="{{ image.title }}"/>
 </a>
+<!--image hover-->
+<div class="cn">
+	<div class="inner">
+	<a href="#share"><i class="fas fa-share-alt fa-lg text-white mx-1 my-2"></i></a>
+	<a href="{{ image.data.url }}" download><i class="fas fa-arrow-down fa-lg text-white mx-1 my-2"></i></a>
+	<a href="{{ image.data.url }}"><i class="fas fa-expand fa-lg text-white mx-1 my-2"></i></a>
+	</div>
+</div>
+
     <div class="card-body">
+	<div class="text-left mt-n3">
 	<span class="font-weight-bolder">{% get_hit_count for image %}</span> views
 	<span class="fa-layers fa-fw mx-3">
 	<i class="far fa-comment"></i>
         <strong class="fa-layers-text">{{ comment_count }}</strong>
         </span>
+	</div>
+	<div class="text-center mt-n4">
+	<a class="text-greenlink" target="_blank" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons"></i></a>
+	</div>
+	<div class="text-right mt-n4">
+	<p class="p_font">{{ image.date_taken }}</p>
+	</div>
     </div>
 </div><!--End of card-->
 </div><!--End of Col-->
