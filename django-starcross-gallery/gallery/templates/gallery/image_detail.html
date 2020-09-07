@@ -10,6 +10,12 @@
 
 {% block header %}
 
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'gallery/css/gallery.css' %}">
+
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{% url 'gallery:image_detail' image.pk image.slug %}">
 
     <script type="text/javascript">
@@ -183,24 +189,16 @@
 
 <div class="col-sm-6">
 
-
-<!--
-<div class="py-4 text-center">
-
-  {{ comment_count }} comment{{ comment_count|pluralize }}
-
-  ha{{ comment_count|pluralize:"s,ve" }} been posted.
-
-</div>
--->
-
-
 <div class="mt-n4" id="comments" style="width: 42rem;"></div>
 
 
 </div> <!--End of column-->
 </div><!--End of row-->
-<!--
+
+<h3 class="text-center title_font title_color my-5">Browse additional items from this album<hr></h3>
+
+
+
 <div id="album_preview">
 {% if album_images %}
 
@@ -227,7 +225,7 @@
 
 {% endif %}
  </div>
--->
+
 </div><!--End of container-->
 
 {% endblock %}
