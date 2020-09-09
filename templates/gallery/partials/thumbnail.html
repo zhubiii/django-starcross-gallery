@@ -1,15 +1,17 @@
-
 <div class="thumbnail">
 
+	<div class="card border-0">
         <img id="image_empty_{{ image.pk }}"
              class="image image_spacer"
              alt="{{ image.title }}"
              data-src="{{ image.data_thumbnail.url }}"
              style="width: {% widthratio image.data_thumbnail.width 2 1 %}px";/>
 
-        <div class="overlay image_spacer">
+        <div class="card-body">
 
-            <div class="label"> {{ image.title }} </div>
+            <h5 class="title_color title_font"> {{ image.title }} </h5>
+
+        </div>
 
         </div>
 

@@ -19,20 +19,88 @@
 
 {% block content %}
 
-
-<div id="image_container">
+<div class="container px-lg-1">
 
     {% for image in image_list %}
 	{% if image.is_validated %} 
 
-        <a href="{% url 'gallery:image_detail' image.pk image.slug %}">
 
-            {% include "gallery/partials/thumbnail.html" %}
+	{% if forloop.first %}
 
-        </a>
+	<div class="row mt-4 mb-2 mx-lg-n5">
+
+	<div class="col-sm">
+
+	{% else %}
+
+	<div class="col-sm">
 
 	{% endif %}
-    {% endfor %}
+
+
+
+
+
+
+
+
+<a class="nounderline" href="{% url 'gallery:image_detail' image.pk image.slug %}">
+	
+<div class="card border-0">
+
+   <img id="image_empty_{{ image.pk }}"
+
+                class="card-img-top photo-card-img-top"
+
+                alt="{{ image.title }}"
+
+                src="{{ image.data_thumbnail.url }}"
+   
+
+  <div class="card-body">
+
+ <h5 class="title_color title_font text-center"> {{ image.title }} </h5>
+
+
+ </div>
+
+</a>
+</div>
+
+
+
+
+
+
+
+		<!--Make sure only 4 columns per row-->
+
+
+
+		{% if forloop.counter|divisibleby:4 %}
+
+
+
+			</div>
+
+			<div class="row my-2 mx-lg-n5">
+
+
+
+		{% endif %}
+
+
+
+
+
+	{% if forloop.last %}</div>{% endif %}
+
+
+
+{% endif %}
+
+{% endfor %}
+</div>
 
 
     {% if not image_list and user.is_authenticated %}
@@ -43,6 +111,5 @@
 
     {% endif %}
 
-</div>
 
 {% endblock %}
